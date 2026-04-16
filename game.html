@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/gameStyles.css">
+    <title>Which Type of Man Are You Dealing With? - A Personality Quiz by Emarie Morgan</title>
+    
+</head>
+<body class="common">
+    <div>
+    <a href="scratch-site.html" class="backtohome">Back to Home</a>
+    </div>
+    <h1>Which Type of Man Are You Dealing With?</h1>
+    <h3>Take this quick 5 question personality test to determine what kind of man you are dealing with and how best to win his undying love and affection.</h3>
+
+<form id="quizForm">
+  <h3>1. What word describes him best?</h3>
+
+  <label>
+    <input type="radio" name="q1" value="Snack Opportunist">
+    sweet
+  </label><br>
+
+  <label>
+    <input type="radio" name="q1" value="Testosterone Activator">
+    energetic
+  </label><br>
+
+  <label>
+    <input type="radio" name="q1" value="Professional Dopamine Hunter">
+    scatter-brained
+  </label><br>
+
+  <label>
+    <input type="radio" name="q1" value="Garage Philosopher">
+    intellectual
+  </label><br>
+</form>
+
+<h3>2. Where are you most likely to find him on the weekend?</h3>
+
+<label>
+  <input type="radio" name="q2" value="Professional Dopamine Hunter">
+  Huddled over his next project
+</label><br>
+
+<label>
+  <input type="radio" name="q2" value="Snack Opportunist">
+  Trying out a new restaurant or visiting his regular ones
+</label><br>
+
+<label>
+  <input type="radio" name="q2" value="Testosterone Activator">
+  Hiking, working out, fishing, anything outside really
+</label><br>
+
+<label>
+  <input type="radio" name="q2" value="Garage Philosopher">
+  Having a heated debate with a stranger
+</label><br>
+
+
+<h3>3. What is your "in" with this guy?</h3>
+
+<label>
+  <input type="radio" name="q3" value="Garage Philosopher">
+  Staying up way too late discussing the ethics behind Bluey
+</label><br>
+
+<label>
+  <input type="radio" name="q3" value="Testosterone Activator">
+  Tossing a piece of popcorn in the air and challenging him to catch it in his mouth
+</label><br>
+
+<label>
+  <input type="radio" name="q3" value="Professional Dopamine Hunter">
+  Planning out all of the fun things you could do that you rarely ever get around to
+</label><br>
+
+<label>
+  <input type="radio" name="q3" value="Snack Opportunist">
+  Trying out a new recipe together, like macarons or creme brulee
+</label><br>
+
+
+<h3>4. What is most likely to be in his most recent YouTube search history?</h3>
+
+<label>
+  <input type="radio" name="q4" value="Professional Dopamine Hunter">
+  Indian guy building a rocket 10 hour stream
+</label><br>
+
+<label>
+  <input type="radio" name="q4" value="Garage Philosopher">
+  Amber Heard Trial
+</label><br>
+
+<label>
+  <input type="radio" name="q4" value="Snack Opportunist">
+  Meal prep ideas
+</label><br>
+
+<label>
+  <input type="radio" name="q4" value="Testosterone Activator">
+  Cbum workout routine
+</label><br>
+
+<h3>5. What phrase would you hear him say most often?</h3>
+
+<label>
+  <input type="radio" name="q5" value="Snack Opportunist">
+  "I'm hungry"
+</label><br>
+
+<label>
+  <input type="radio" name="q5" value="Garage Philosopher">
+  "Let me play devil's advocate for a moment"
+</label><br>
+
+<label>
+  <input type="radio" name="q5" value="Testosterone Activator">
+  "Race you to the car!"
+</label><br>
+
+<label>
+  <input type="radio" name="q5" value="Professional Dopamine Hunter">
+  "Yeah... oh but did I tell you about my new hobby?"
+</label><br>
+
+<br>
+<button type="button" onclick="calculateResult()">Get Result</button>
+
+<div id="resultBox">
+  <h2 id="resultTitle"></h2>
+  <p id="resultDescription"></p>
+</div>
+
+<script>
+  function calculateResult() {
+    let scores = {
+      "Snack Opportunist": 0,
+      "Testosterone Activator": 0,
+      "Professional Dopamine Hunter": 0,
+      "Garage Philosopher": 0
+    };
+
+    let q1 = document.querySelector('input[name="q1"]:checked');
+    let q2 = document.querySelector('input[name="q2"]:checked');
+    let q3 = document.querySelector('input[name="q3"]:checked');
+    let q4 = document.querySelector('input[name="q4"]:checked');
+    let q5 = document.querySelector('input[name="q5"]:checked');
+
+    if (!q1 || !q2 || !q3 || !q4 || !q5) {
+      alert("Please answer all 5 questions before getting your result.");
+      return;
+    }
+
+    scores[q1.value]++;
+    scores[q2.value]++;
+    scores[q3.value]++;
+    scores[q4.value]++;
+    scores[q5.value]++;
+
+    let maxScore = Math.max(
+      scores["Snack Opportunist"],
+      scores["Testosterone Activator"],
+      scores["Professional Dopamine Hunter"],
+      scores["Garage Philosopher"]
+    );
+
+    let topResults = [];
+
+    for (let type in scores) {
+      if (scores[type] === maxScore) {
+        topResults.push(type);
+      }
+    }
+
+    let finalResult =
+      topResults[Math.floor(Math.random() * topResults.length)];
+
+    let descriptions = {
+  "Snack Opportunist": "This man is all things flavor town! They say that the easiest way to a man's heart is through his stomach, and he is living proof of this. Any new food, comfort food, or homemade food is sure to win his affection. Don't believe me? Bake him homemade chocolate chip cookies, and don't forget to send me the wedding announcement.",
+  "Testosterone Activator": "This man lives for the thrill. Challenge him with any sport, contest, or task and he will treat it like the Olympics. Just don't be surprised if he turns on your Catan alliance at the end of the game to get a leg up, its in his blood. Indulge him in these moments and he will feel like the king of the hill, and make you his queen.",
+  "Professional Dopamine Hunter": "ADHD- stands for Anyways, Did?... Huh... Do you remember what the last letter was? He is a little all over the place, but when he gets his mind focused on something, there is absolutely no stopping him. Literally, try it and see what happens. He will drag you into his next new obsession with mini-figurine painting or 3D sculpting or writing a 3 book trilogy, and he will have the time of his life... even if he only finishes about 20% of the projects. Boyfriending this guy is as simple as listening to his long, passionate rants and letting him be himself. Thank me later when you have a brand-new basement that cost half the price.",
+  "Garage Philosopher": "He LOVES to argue, but not in the defensive way, but in the friendly debate kind of way. He lives for the deep 2am conversations about the meaning of life, so the best way to earn his affection is to challenge his thinking. Push him mentally and you are sure to win his heart."
+};
+
+document.getElementById("resultTitle").textContent = finalResult;
+document.getElementById("resultDescription").textContent = descriptions[finalResult];
+document.getElementById("resultBox").style.display = "block";
+  }
+</script>
+</body>
+</html>
